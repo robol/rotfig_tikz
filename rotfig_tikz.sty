@@ -16,6 +16,19 @@
 \usetikzlibrary{arrows}
 \usetikzlibrary{calc}
 \usetikzlibrary{decorations.pathreplacing} %
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta}
+
+\newcommandx{\tikzrotationt}[6][1=black,2=,3=,4=]{
+  % This is the new pure tikz implementation of the rotations, which
+  % we assume should have exactly height 1, unless otherwise specified. 
+  \pgfgettransformentries{\mya}{\myb}{\myc}{\myd}{\mys}{\myt}
+  \tikzstyle{ar_style}=[color=#1]
+  \draw[ar_style, arrows={->[length=5*\myd,width=9*\myd]}] 
+  (#5,#6 + .5) -- (#5,#6) -- (#5+.4,#6);
+  \draw[ar_style, arrows={->[length=5*\myd,width=9*\myd]}]
+    (#5,#6 + .5) -- (#5,#6+1) -- (#5+.4,#6+1);
+}
 
 % tikzrotation fixes the positioning of the rotator
 % depends on rotfig
